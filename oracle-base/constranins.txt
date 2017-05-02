@@ -1,0 +1,8 @@
+https://oracle-base.com/dba/constraints/disable_chk.sql
+https://oracle-base.com/dba/constraints/disable_fk.sql
+https://oracle-base.com/dba/constraints/disable_pk.sql
+https://oracle-base.com/dba/constraints/disable_ref_fk.sql
+https://oracle-base.com/dba/constraints/enable_chk.sql
+https://oracle-base.com/dba/constraints/enable_fk.sql
+https://oracle-base.com/dba/constraints/enable_pk.sql
+https://oracle-base.com/dba/constraints/enable_ref_fk.sql

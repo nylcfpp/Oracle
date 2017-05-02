@@ -1,0 +1,5 @@
+https://oracle-base.com/dba/resource_manager/active_plan.sql
+https://oracle-base.com/dba/resource_manager/consumer_group_usage.sql
+https://oracle-base.com/dba/resource_manager/consumer_groups.sql
+https://oracle-base.com/dba/resource_manager/plan_directives.sql
+https://oracle-base.com/dba/resource_manager/resource_plans.sql

@@ -1,0 +1,14 @@
+https://oracle-base.com/dba/12c/cdb_resource_plan_directives.sql
+https://oracle-base.com/dba/12c/cdb_resource_plans.sql
+https://oracle-base.com/dba/12c/credentials.sql
+https://oracle-base.com/dba/12c/host_aces.sql
+https://oracle-base.com/dba/12c/host_acls.sql
+https://oracle-base.com/dba/12c/login.sql
+https://oracle-base.com/dba/12c/pdbs.sql
+https://oracle-base.com/dba/12c/priv_captures.sql
+https://oracle-base.com/dba/12c/redaction_columns.sql
+https://oracle-base.com/dba/12c/redaction_policies.sql
+https://oracle-base.com/dba/12c/redaction_value_defaults.sql
+https://oracle-base.com/dba/12c/services.sql
+https://oracle-base.com/dba/12c/
+https://oracle-base.com/dba/12c/

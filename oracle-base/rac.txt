@@ -1,0 +1,6 @@
+https://oracle-base.com/dba/rac/locked_objects_rac.sql
+https://oracle-base.com/dba/rac/longops_rac.sql
+https://oracle-base.com/dba/rac/monitor_memory_rac.sql
+https://oracle-base.com/dba/rac/session_undo_rac.sql
+https://oracle-base.com/dba/rac/session_waits_rac.sql
+https://oracle-base.com/dba/rac/sessions_rac.sql

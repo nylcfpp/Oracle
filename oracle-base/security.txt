@@ -1,0 +1,10 @@
+https://oracle-base.com/dba/security/grant_delete.sql
+https://oracle-base.com/dba/security/grant_execute.sql
+https://oracle-base.com/dba/security/grant_insert.sql
+https://oracle-base.com/dba/security/grant_select.sql
+https://oracle-base.com/dba/security/grant_update.sql
+https://oracle-base.com/dba/security/package_synonyms.sql
+https://oracle-base.com/dba/security/schema_write_access.sql
+https://oracle-base.com/dba/security/sequence_synonyms.sql
+https://oracle-base.com/dba/security/table_synonyms.sql
+https://oracle-base.com/dba/security/view_synonyms.sql
