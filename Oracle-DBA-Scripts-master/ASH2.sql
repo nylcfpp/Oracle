@@ -1,6 +1,8 @@
 -- how much history do we have:
 select min(sample_time) from V$ACTIVE_SESSION_HISTORY
 
+--rac环境记得带上GV$ACTIVE_SESSION_HISTORY
+
 -- top events
 select event,count(*) from DBA_HIST_ACTIVE_SESS_HISTORY where sample_time> sysdate-1/24 
 and user_id>0
