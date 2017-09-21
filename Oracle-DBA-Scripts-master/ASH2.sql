@@ -3,6 +3,59 @@ select min(sample_time) from V$ACTIVE_SESSION_HISTORY
 
 --rac环境记得带上GV$ACTIVE_SESSION_HISTORY
 
+--查询最近比较慢的SQL
+SELECT SESSION_ID||','||SESSION_SERIAL# "SID,SERIAL#",
+       round(DELTA_TIME / 1000000,2) DELTA, --上一次采样到这次采样的时间间隔
+       round(DELTA_READ_IO_BYTES / 1000000,2) DELTA_R,
+       round(DELTA_WRITE_IO_BYTES / 1000000,2) DELTA_W,
+       round(TM_DELTA_TIME / 1000000,2) TM,
+       round(TM_DELTA_DB_TIME / 1000000,2) TMD_DB,
+       round(TM_DELTA_CPU_TIME / 1000000,2) TMD_CPU,
+       60 * EXTRACT(MINUTE FROM SAMPLE_TIME - SQL_EXEC_START) +
+       EXTRACT(SECOND FROM SAMPLE_TIME - SQL_EXEC_START) EXECUTE,
+       round(pga_allocated/1024/1024,2)||'M' pga,
+       round(temp_space_allocated/1024/1024,2)||'M' temp,
+       SAMPLE_ID,
+       TO_CHAR(SAMPLE_TIME, 'hh24:mi:ss.ff2') SAMPLE_TIME,
+       SQL_EXEC_START,
+       SQL_ID,
+       sql_child_number,sql_plan_hash_value,
+       SQL_OPNAME,
+       SQL_PLAN_OPERATION,
+       SQL_PLAN_OPTIONS,
+       WAIT_CLASS,
+       EVENT,
+       P1TEXT,
+       P1,
+       P2TEXT,
+       P2,
+       CURRENT_OBJ#,
+       CURRENT_BLOCK#,
+       CURRENT_FILE#,
+       XID,
+       IN_PARSE,
+       IN_HARD_PARSE,
+       IN_SQL_EXECUTION,
+       IN_PLSQL_EXECUTION,
+       WAIT_TIME,
+       SESSION_STATE,
+       TIME_WAITED,
+       --blocking_session_status,blocking_session,
+       PROGRAM,
+       MODULE,
+       MACHINE
+  FROM GV$ACTIVE_SESSION_HISTORY T
+ WHERE SESSION_TYPE = 'FOREGROUND'
+   AND SAMPLE_TIME > SYSDATE - 10 / 1440
+   ORDER BY SESSION_ID, SESSION_SERIAL#, SAMPLE_ID;
+/*
+ALTER SYSTEM KILL SESSION '7,15';
+SELECT SID,SERIAL#,STATUS,SERVER FROM GV$SESSION;
+GV$ACTIVE_SESSION_HISTORY <http://docs.oracle.com/cd/E11882_01/server.112/e40402/dynviews_1007.htm>
+*/
+--绑定变量
+SELECT * FROM  v$sql_bind_capture WHERE sql_id='54uhg2qz57hpv';
+
 -- top events
 select event,count(*) from DBA_HIST_ACTIVE_SESS_HISTORY where sample_time> sysdate-1/24 
 and user_id>0
@@ -27,9 +80,9 @@ and sample_time> sysdate-1/24
 order by sample_time;
 
 -- look for hot buffers
+-- file#,block#,class#
 select p1,p2,p3,count(*) from DBA_HIST_ACTIVE_SESS_HISTORY
-where sample_time> to_date('03-MAR-11 15:30','dd-mon-yy hh24:mi')
-and  sample_time< to_date('03-MAR-11 16:30','dd-mon-yy hh24:mi')
+where sample_time> sysdate-7
 and user_id>0
 and event='buffer busy waits'
 group by p1,p2,p3 
